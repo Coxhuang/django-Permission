@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'app',
 ]
 
@@ -84,6 +85,27 @@ DATABASES = {
 }
 
 
+
+
+AUTH_USER_MODEL = 'app.UserProfile'
+
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'app.exceptions.exception.custom_exception_handler',
+}
+
+import datetime
+JWT_AUTH = {
+    # 指明token的有效期
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_ISSUER': 'http://fasfdas.baicu',
+    'JWT_AUTH_HEADER_PREFIX': 'TOKEN',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=1)
+}
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -121,3 +143,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+
+
+
+
